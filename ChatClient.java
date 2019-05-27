@@ -1,3 +1,6 @@
+// https://github.com/NaMooJoon/SimpleChat.git
+// 21800179 김준현
+
 import java.net.*;
 import java.io.*;
 
@@ -20,7 +23,7 @@ public class ChatClient {
 			// send username.
 			pw.println(args[0]);
 			pw.flush();
-			InputThread it = new InputThread(sock, br);
+			InputThread it = new InputThread(args[0], sock, br);
 			it.start();
 			String line = null;
 			while((line = keyboard.readLine()) != null){
@@ -55,7 +58,9 @@ public class ChatClient {
 class InputThread extends Thread{
 	private Socket sock = null;
 	private BufferedReader br = null;
-	public InputThread(Socket sock, BufferedReader br){
+	private String ID;
+	public InputThread(String ID, Socket sock, BufferedReader br){
+		this.ID = ID;
 		this.sock = sock;
 		this.br = br;
 	}
@@ -77,4 +82,5 @@ class InputThread extends Thread{
 			}catch(Exception ex){}
 		}
 	} // InputThread
+
 }
