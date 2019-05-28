@@ -102,7 +102,6 @@ class ChatThread extends Thread{
 			Set<String> users = hm.keySet();
 			for(String user : users) {								// hm의 key값들(ID들) 모두 출력
 				receiver.println(" - " + user);
-				receiver.flush();
 				userCount ++;
 			}
 			receiver.println("\n>>> The number of users: " + userCount);
@@ -120,8 +119,8 @@ class ChatThread extends Thread{
 			while(iter.hasNext()){
 				PrintWriter pw = (PrintWriter)iter.next();
 				pw.println(sender + msg);
-				pw.flush();
 			} // while
+			pw.flush();
 		} // synchronized
 	} // broadcast
 
